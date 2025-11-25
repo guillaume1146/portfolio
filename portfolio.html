@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guillaume Rakotonjanahary - AI & Data Engineer Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #3b82f6;
+            --accent: #06b6d4;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --text: #e2e8f0;
+            --text-dim: #94a3b8;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section */
+        section {
+            padding: 5rem 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        #hero {
+            text-align: center;
+            padding-top: 8rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero-content p {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            animation: fadeIn 1s ease-out 0.4s backwards;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(37, 99, 235, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .stat-card p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(30, 41, 59, 0.6);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            transition: all 0.3s;
+        }
+
+        .skill-category:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+        }
+
+        .skill-category h3 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-category h3 i {
+            font-size: 1.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(37, 99, 235, 0.2);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: rgba(37, 99, 235, 0.4);
+            transform: scale(1.05);
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+            margin-right: 50%;
+            padding-right: 3rem;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: auto;
+            margin-left: 50%;
+            padding-left: 3rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 4px solid var(--dark);
+            z-index: 1;
+        }
+
+        .timeline-content {
+            background: rgba(30, 41, 59, 0.6);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            transition: all 0.3s;
+        }
+
+        .timeline-content:hover {
+            border-color: var(--primary);
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+        }
+
+        .timeline-content h3 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .timeline-content .company {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content .date {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .timeline-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .timeline-content li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-dim);
+        }
+
+        .timeline-content li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(37, 99, 235, 0.3);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(6, 182, 212, 0.2));
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .project-header i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .project-header h3 {
+            color: var(--text);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-body {
+            padding: 1.5rem;
+        }
+
+        .project-category {
+            display: inline-block;
+            background: rgba(37, 99, 235, 0.2);
+            color: var(--accent);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(37, 99, 235, 0.3);
+        }
+
+        .project-body p {
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-badge {
+            background: rgba(6, 182, 212, 0.2);
+            color: var(--accent);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+        }
+
+        /* Certifications */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .cert-card {
+            background: rgba(30, 41, 59, 0.6);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .cert-card:hover {
+            border-color: var(--success);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+        }
+
+        .cert-icon {
+            font-size: 2.5rem;
+            color: var(--success);
+        }
+
+        .cert-info h3 {
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-info p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: rgba(30, 41, 59, 0.6);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+        }
+
+        .contact-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card a {
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-card a:hover {
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(37, 99, 235, 0.2);
+        }
+
+        footer p {
+            color: var(--text-dim);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin: 0;
+                padding-left: 3rem;
+                padding-right: 1rem;
+            }
+
+            .timeline-dot {
+                left: 0;
+                transform: translateX(-50%);
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Particle Background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.5rem;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--text);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Project Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: var(--dark-light);
+            margin: 5% auto;
+            padding: 3rem;
+            border: 1px solid var(--primary);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 900px;
+            animation: fadeInDown 0.3s ease-out;
+        }
+
+        .close {
+            color: var(--text-dim);
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: var(--accent);
+        }
+
+        .modal h2 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .modal-body {
+            margin-top: 2rem;
+        }
+
+        .modal-body h3 {
+            color: var(--primary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-body ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .modal-body li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-dim);
+        }
+
+        .modal-body li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Guillaume • Portfolio</div>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Guillaume Rakotonjanahary Tsantaniaina</h1>
+                <p class="subtitle">AI & Data Fullstack Engineer | Cloud Specialist</p>
+                <p>
+                    AI and Data Fullstack Engineer with over 4 years of professional R&D experience, specialized in Cloud
+                    Engineering (Google Cloud Platform and AWS) and the development of scalable AI and Fullstack solutions.
+                    Strong expertise in the design and production deployment of complex systems: web applications, data/ML
+                    pipelines, conversational AI, computer vision, and RAG architectures.
+                </p>
+                <div class="btn-group">
+                    <!-- <a href="#" class="btn btn-primary"><i class="fas fa-download"></i> Download CV</a> -->
+                    <a href="#projects" class="btn btn-secondary"><i class="fas fa-briefcase"></i> View Projects</a>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <i class="fas fa-briefcase"></i>
+                        <h3>4.5+</h3>
+                        <p>Years Experience</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-project-diagram"></i>
+                        <h3>20+</h3>
+                        <p>Projects Completed</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-award"></i>
+                        <h3>5+</h3>
+                        <p>Certifications</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <h3>5+</h3>
+                        <p>International Clients</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.1rem; color: var(--text-dim); margin-bottom: 2rem; line-height: 1.8;">
+                    Proven experience with international clients in healthcare, fintech, and e-commerce sectors, 
+                    with a performance and reliability-oriented approach. Currently seeking new challenges and more 
+                    complex large-scale projects to apply and deepen skills acquired in enterprise and during academic journey.
+                </p>
+                <p style="font-size: 1.1rem; color: var(--text-dim); line-height: 1.8;">
+                    <strong style="color: var(--accent);">Specializations:</strong> RAG Architectures, Computer Vision, 
+                    MLOps, Data Engineering, Conversational AI, Multi-Agent Systems, Cloud Infrastructure (GCP, AWS)
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-cloud"></i> Cloud Computing</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Google Cloud Platform</span>
+                        <span class="skill-tag">Amazon Web Services</span>
+                        <span class="skill-tag">BigQuery</span>
+                        <span class="skill-tag">Vertex AI</span>
+                        <span class="skill-tag">SageMaker</span>
+                        <span class="skill-tag">Cloud Run</span>
+                        <span class="skill-tag">Lambda</span>
+                        <span class="skill-tag">S3</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Fullstack Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React TypeScript</span>
+                        <span class="skill-tag">React Native</span>
+                        <span class="skill-tag">Next.js</span>
+                        <span class="skill-tag">Python FastAPI</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">REST API</span>
+                        <span class="skill-tag">WebSocket</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-robot"></i> AI & Machine Learning</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">RAG Architectures</span>
+                        <span class="skill-tag">LangChain</span>
+                        <span class="skill-tag">LangGraph</span>
+                        <span class="skill-tag">Gemini</span>
+                        <span class="skill-tag">GPT</span>
+                        <span class="skill-tag">Claude</span>
+                        <span class="skill-tag">Fine-tuning</span>
+                        <span class="skill-tag">Prompt Engineering</span>
+                        <span class="skill-tag">Multi-Agent Systems</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-eye"></i> Computer Vision</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">YOLO</span>
+                        <span class="skill-tag">CNN</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">OpenCV</span>
+                        <span class="skill-tag">CLIP</span>
+                        <span class="skill-tag">Object Detection</span>
+                        <span class="skill-tag">Image Segmentation</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-brain"></i> ML & Deep Learning</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">XGBoost</span>
+                        <span class="skill-tag">Random Forest</span>
+                        <span class="skill-tag">Neural Networks</span>
+                        <span class="skill-tag">Time Series</span>
+                        <span class="skill-tag">Clustering</span>
+                        <span class="skill-tag">NLP</span>
+                        <span class="skill-tag">spaCy</span>
+                        <span class="skill-tag">Transformers</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-database"></i> Data Engineering</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Apache Spark</span>
+                        <span class="skill-tag">Apache Beam</span>
+                        <span class="skill-tag">Airflow</span>
+                        <span class="skill-tag">dbt</span>
+                        <span class="skill-tag">ETL/ELT</span>
+                        <span class="skill-tag">CDC</span>
+                        <span class="skill-tag">Dataflow</span>
+                        <span class="skill-tag">Kafka</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-database"></i> Databases</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Neo4j</span>
+                        <span class="skill-tag">BigQuery</span>
+                        <span class="skill-tag">Redshift</span>
+                        <span class="skill-tag">DynamoDB</span>
+                        <span class="skill-tag">Elasticsearch</span>
+                        <span class="skill-tag">Redis</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-cogs"></i> MLOps & DevOps</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">CI/CD</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">Jenkins</span>
+                        <span class="skill-tag">Terraform</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">ArgoCD</span>
+                        <span class="skill-tag">MLflow</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+
+                <!-- ETech 2025 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Data Scientist & Fullstack AI Engineer</h3>
+                        <p class="company">ETech Consulting - Madagascar</p>
+                        <p class="date"><i class="far fa-calendar"></i> January 2025 - Present</p>
+                        <ul>
+                            <li>Architected OLTP to OLAP Data Warehouse for Biometric Enrollment KPIs</li>
+                            <li>Developed Multi-Agent Lead Generation System using Google ADK</li>
+                            <li>Built Text-to-SQL RAG Chatbot with LangGraph and SQLCoder fine-tuning</li>
+                            <li>Implemented Real-Time Biometric Analysis Platform with CDC replication</li>
+                            <li>Created Multilingual Airport Conversational Assistant with WhatsApp API</li>
+                            <li>Conducted AWS vs GCP benchmarking for Innovation Business Unit</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- ETech 2023-2025 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Data Scientist & AI Fullstack Engineer</h3>
+                        <p class="company">ETech Consulting</p>
+                        <p class="date"><i class="far fa-calendar"></i> November 2023 - December 2025</p>
+                        <ul>
+                            <li>Designed Hybrid RAG Architecture (Vector + Knowledge Graphs)</li>
+                            <li>Developed CV Recommendation Chatbot with ML Matching</li>
+                            <li>Built Multimodal E-commerce Chatbot with CLIP image search</li>
+                            <li>Implemented Computer Vision System for Retail Inventory (YOLO V8)</li>
+                            <li>Created Massive Vectorization ETL Pipeline (105K images)</li>
+                            <li>Developed Visual Search System with Big Data Clustering</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- JSI CHISU -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Data Engineer & Systems Developer</h3>
+                        <p class="company">JSI - CHISU USAID Program</p>
+                        <p class="date"><i class="far fa-calendar"></i> January 2025 - July 2025 (Part Time)</p>
+                        <ul>
+                            <li>Developed automatic bulletin module with multi-source data ingestion</li>
+                            <li>Built NL-to-SQL Chatbot for DHIS2 queries with GPT fine-tuning</li>
+                            <li>Configured and deployed DHIS2 infrastructure for National Nutrition Office</li>
+                            <li>Created epidemiological dashboards with Chart.js visualizations</li>
+                            <li>Technologies: Python, LangChain, DHIS2, PostgreSQL, React.js</li>
+                        </ul>
+                    </div>
+                </div>
+
+                
+
+                <!-- JSI PMI -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Data & Fullstack Engineer</h3>
+                        <p class="company">JSI - PMI Measure Malaria USAID</p>
+                        <p class="date"><i class="far fa-calendar"></i> June 2022 - October 2023</p>
+                        <ul>
+                            <li>Developed Healthcare Geolocation & Vaccine Management mobile app</li>
+                            <li>Built Digital Library with Intelligent Search Engine and OCR</li>
+                            <li>Created Automated BI Assistant for Health Data Analysis</li>
+                            <li>Implemented COVID-19 Data Anomaly Detection Pipeline (Isolation Forest)</li>
+                            <li>Technologies: React Native, Python, PostgreSQL, Elasticsearch</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="ai">AI Engineering</button>
+                <button class="filter-btn" data-filter="data">Data Engineering</button>
+                <button class="filter-btn" data-filter="cv">Computer Vision</button>
+                <button class="filter-btn" data-filter="fullstack">Fullstack</button>
+            </div>
+
+            <div class="projects-grid" id="projects-grid">
+                <!-- Multi-Agent Lead Generation -->
+                <div class="project-card" data-category="ai">
+                    <div class="project-header">
+                        <i class="fas fa-users-cog"></i>
+                        <h3>Multi-Agent Lead Generation System</h3>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-category">AI Engineering</span>
+                        <p>Orchestrated multi-agent system using Google ADK and LLM models for automated prospection with social media and company intelligence analysis.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Google ADK</span>
+                            <span class="tech-badge">LLMs</span>
+                            <span class="tech-badge">Multi-Agent</span>
+                            <span class="tech-badge">Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text-to-SQL RAG -->
+                <div class="project-card" data-category="ai">
+                    <div class="project-header">
+                        <i class="fas fa-comments"></i>
+                        <h3>Text-to-SQL RAG Chatbot</h3>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-category">AI Engineering</span>
+                        <p>LangGraph architecture with specialized agents and memory management. Fine-tuned SQLCoder-7B-2 on BigQuery syntax for multi-query support.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">LangGraph</span>
+                            <span class="tech-badge">Gemini 2.5</span>
+                            <span class="tech-badge">Fine-tuning</span>
+                            <span class="tech-badge">FastAPI</span>
+                            <span class="tech-badge">React</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hybrid RAG -->
+                <div class="project-card" data-category="ai">
+                    <div class="project-header">
+                        <i class="fas fa-project-diagram"></i>
+                        <h3>Hybrid RAG Architecture</h3>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-category">AI Engineering</span>
+                        <p>Complete design combining vector search and knowledge graphs with adaptive chunking and Neo4j for semantic relations.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">LangGraph</span>
+                            <span class="tech-badge">Neo4j</span>
+                            <span class="tech-badge">Pinecone</span>
+                            <span class="tech-badge">CrewAI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medical RAG -->
+                <div class="project-card" data-category="ai">
+                    <div class="project-header">
+                        <i class="fas fa-user-md"></i>
+                        <h3>Medical RAG & Health Assistant</h3>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-category">AI Engineering</span>
+                        <p>LangChain RAG with Mauritian medical context (100K+ consultations, BLEU: 0.89). Multi-agent architecture for triage and symptom checking (92% precision).</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">LangChain</span>
+                            <span class="tech-badge">Gemini Fine-tuning</span>
+                            <span class="tech-badge">XGBoost</span>
+                            <span class="tech-badge">BioBERT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Document Verification -->
+                <div class="project-card" data-category="ai cv">
+                    <div class="project-header">
+                        <i class="fas fa-file-check"></i>
+                        <h3>ML Document Verification System</h3>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-category">AI + Computer Vision</span>
+                        <p>Document AI OCR for medical license validation (95% accuracy). Custom NER for HIPAA certification with fraud detection using isolation forest.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Document AI</span>
+                            <span class="tech-badge">Computer Vision</span>
+                            <span class="tech-badge">TensorFlow</span>
+                            <span class="tech-badge">spaCy NER</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- YOLO Inventory -->
+                <div class="project-card" data-category="cv">
+                    <div class="project-header">
+                        <i class="fas fa-camera"></i>
+                        <h3>Computer Vision Inventory System</h3>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-category">Computer Vision</span>
+                        <p>Real-time multi-class detection and counting system for retail using YOLO V8 with TensorRT optimization.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">YOLO V8</span>
+                            <span class="tech-badge">TensorRT</span>
+                            <span class="tech-badge">OpenCV</span>
+                            <span class="tech-badge">FastAPI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Multimodal E-commerce -->
+                <div class="project-card" data-category="ai cv">
+                    <div class="project-header">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h3>Multimodal E-commerce Chatbot</h3>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-category">AI + Computer Vision</span>
+                        <p>No-code chatbot with configurable modes (vision/text/combined). CLIP implementation for image search with response time < 3 seconds.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">CLIP</span>
+                            <span class="tech-badge">GPT-4 Vision</span>
+                            <span class="tech-badge">LangChain</span>
+                            <span class="tech-badge">React TypeScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Warehouse -->
+                <div class="project-card" data-category="data">
+                    <div class="project-header">
+                        <i class="fas fa-database"></i>
+                        <h3>OLTP to OLAP Data Warehouse</h3>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-category">Data Engineering</span>
+                        <p>PostgreSQL OLTP to BigQuery OLAP star schema migration with fact/dimension tables and BigQuery ML for forecasting.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">BigQuery</span>
+                            <span class="tech-badge">dbt</span>
+                            <span class="tech-badge">ARIMA+</span>
+                            <span class="tech-badge">Looker</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-Time CDC -->
+                <div class="project-card" data-category="data">
+                    <div class="project-header">
+                        <i class="fas fa-sync-alt"></i>
+                        <h3>Real-Time Analytics Platform</h3>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-category">Data Engineering</span>
+                        <p>Complete architecture with CDC replication via Airbyte. End-to-end: PostgreSQL → BigQuery → Looker with real-time KPI monitoring.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Airbyte CDC</span>
+                            <span class="tech-badge">BigQuery</span>
+                            <span class="tech-badge">Terraform</span>
+                            <span class="tech-badge">CI/CD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Massive Vectorization -->
+                <div class="project-card" data-category="data ai">
+                    <div class="project-header">
+                        <i class="fas fa-layer-group"></i>
+                        <h3>Massive Vectorization ETL Pipeline</h3>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-category">Data Engineering + AI</span>
+                        <p>Processed 105K images with Google DataFlow and Apache Beam. Distributed K-means clustering for intelligent catalog recommendations.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Apache Beam</span>
+                            <span class="tech-badge">DataFlow</span>
+                            <span class="tech-badge">BigQuery ML</span>
+                            <span class="tech-badge">Airflow</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Search -->
+                <div class="project-card" data-category="data cv">
+                    <div class="project-header">
+                        <i class="fas fa-search"></i>
+                        <h3>E-commerce Visual Search System</h3>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-category">Data Engineering + CV</span>
+                        <p>Distributed architecture with Apache Spark on DataProc. Clustering algorithms for automatic categorization with image augmentation.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Apache Spark</span>
+                            <span class="tech-badge">Spark ML</span>
+                            <span class="tech-badge">DataProc</span>
+                            <span class="tech-badge">Elasticsearch</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Healthcare Platform -->
+                <div class="project-card" data-category="fullstack data">
+                    <div class="project-header">
+                        <i class="fas fa-hospital"></i>
+                        <h3>Multi-tenant Healthcare SaaS</h3>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-category">Fullstack + Data Engineering</span>
+                        <p>Hybrid ETL/ELT architecture with CDC, Data Lakehouse, and Vector Database. Auto-scaling GCP Cloud Run with HIPAA compliance.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Next.js 15</span>
+                            <span class="tech-badge">FastAPI</span>
+                            <span class="tech-badge">BigQuery</span>
+                            <span class="tech-badge">Kubernetes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vaccine Management -->
+                <div class="project-card" data-category="fullstack">
+                    <div class="project-header">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Healthcare Geolocation & Vaccine Mgmt</h3>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-category">Fullstack Development</span>
+                        <p>React Native architecture with offline-first approach. Optimized routing algorithms for navigation with real-time vaccine stock tracking.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">React Native</span>
+                            <span class="tech-badge">FastAPI</span>
+                            <span class="tech-badge">PostgreSQL</span>
+                            <span class="tech-badge">Google Maps</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Airport Assistant -->
+                <div class="project-card" data-category="ai fullstack">
+                    <div class="project-header">
+                        <i class="fas fa-plane"></i>
+                        <h3>Multilingual Airport Assistant</h3>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-category">AI + Fullstack</span>
+                        <p>Microservices architecture on GKE with WhatsApp Business API. Multilingual NLP with translation and sentiment analysis for passengers.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">GKE</span>
+                            <span class="tech-badge">Gemini 2.5</span>
+                            <span class="tech-badge">LangGraph</span>
+                            <span class="tech-badge">WhatsApp API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DataTour Competition -->
+                <div class="project-card" data-category="ai">
+                    <div class="project-header">
+                        <i class="fas fa-trophy"></i>
+                        <h3>DataTour: Credit Default Prediction</h3>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-category">Data Science Competition</span>
+                        <p>Pan-African data science tournament. Built credit default prediction model on 17M records with 28:1 imbalance ratio using XGBoost and ensemble methods (AUC: 0.64-0.65).</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">XGBoost</span>
+                            <span class="tech-badge">Random Forest</span>
+                            <span class="tech-badge">Feature Engineering</span>
+                            <span class="tech-badge">Imbalanced Data</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INDABAX -->
+                <div class="project-card" data-category="ai">
+                    <div class="project-header">
+                        <i class="fas fa-medal"></i>
+                        <h3>INDABAX: Disease Classification</h3>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-category">ML Competition - 3rd Place</span>
+                        <p>Multi-class disease classification model (10 classes) achieving 94% accuracy. Complete NLP pipeline with preprocessing and feature engineering.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">XGBoost</span>
+                            <span class="tech-badge">CatBoost</span>
+                            <span class="tech-badge">NLP</span>
+                            <span class="tech-badge">TF-IDF</span>
+                            <span class="tech-badge">spaCy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CV Recommendation -->
+                <div class="project-card" data-category="ai">
+                    <div class="project-header">
+                        <i class="fas fa-file-alt"></i>
+                        <h3>CV Recommendation with ML Matching</h3>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-category">AI Engineering</span>
+                        <p>End-to-end architecture with advanced scoring algorithms. NER for skills extraction and semantic analysis for candidate-job matching.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Gemini 2.5</span>
+                            <span class="tech-badge">spaCy NER</span>
+                            <span class="tech-badge">Vertex AI</span>
+                            <span class="tech-badge">React</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Digital Library -->
+                <div class="project-card" data-category="ai fullstack">
+                    <div class="project-header">
+                        <i class="fas fa-book"></i>
+                        <h3>Digital Library with AI Search</h3>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-category">AI + Fullstack</span>
+                        <p>Complete document management system with NLP for semantic indexing. Automatic categorization with ML and OCR for physical documents.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Elasticsearch</span>
+                            <span class="tech-badge">spaCy</span>
+                            <span class="tech-badge">Tesseract OCR</span>
+                            <span class="tech-badge">React.js</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COVID-19 Quality Control -->
+                <div class="project-card" data-category="data ai">
+                    <div class="project-header">
+                        <i class="fas fa-virus"></i>
+                        <h3>COVID-19 Data Quality Pipeline</h3>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-category">Data Engineering + ML</span>
+                        <p>Automated anomaly detection using isolation forest. Complete DHIS2 module for quality monitoring with automatic reports generation.</p>
+                        <div class="project-tech">
+                            <span class="tech-badge">Isolation Forest</span>
+                            <span class="tech-badge">DBSCAN</span>
+                            <span class="tech-badge">DHIS2 API</span>
+                            <span class="tech-badge">React.js</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications & Achievements</h2>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <i class="fas fa-aws cert-icon"></i>
+                    <div class="cert-info">
+                        <h3>AWS Machine Learning Engineer Associate</h3>
+                        <p>Amazon Web Services</p>
+                    </div>
+                </div>
+
+                <div class="cert-card">
+                    <i class="fas fa-graduation-cap cert-icon"></i>
+                    <div class="cert-info">
+                        <h3>Master MSc in Big Data & AI</h3>
+                        <p>BIHAR ESTIA France (17.2/20) - 2024</p>
+                    </div>
+                </div>
+
+                <div class="cert-card">
+                    <i class="fas fa-language cert-icon"></i>
+                    <div class="cert-info">
+                        <h3>Advanced Level C1 English</h3>
+                        <p>EF-SET Certified</p>
+                    </div>
+                </div>
+
+                <div class="cert-card">
+                    <i class="fas fa-code cert-icon"></i>
+                    <div class="cert-info">
+                        <h3>Python 3 Certification</h3>
+                        <p>Coding Game Certified</p>
+                    </div>
+                </div>
+
+                <div class="cert-card">
+                    <i class="fas fa-trophy cert-icon"></i>
+                    <div class="cert-info">
+                        <h3>INDABAX Madagascar 2023</h3>
+                        <p>3rd Place - ML Competition</p>
+                    </div>
+                </div>
+
+                <div class="cert-card">
+                    <i class="fas fa-chart-line cert-icon"></i>
+                    <div class="cert-info">
+                        <h3>PySpark & Python Data Processing</h3>
+                        <p>EDUCBA Certified</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p style="text-align: center; color: var(--text-dim); max-width: 600px; margin: 0 auto 3rem;">
+                Interested in collaborating or discussing AI & Data Engineering projects? Feel free to reach out!
+            </p>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <!-- <a href="mailto:atr.guillaume@gmail.com">atr.guillaume@gmail.com</a> -->
+                    <p style="color: var(--text-dim);">Contact via LinkedIn</p>
+                </div>
+
+                <div class="contact-card">
+                    <i class="fab fa-linkedin"></i>
+                    <h3>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/tsanta1146" target="_blank">linkedin.com/in/tsanta1146</a>
+                </div>
+
+                <div class="contact-card">
+                    <i class="fab fa-github"></i>
+                    <h3>GitHub</h3>
+                    <!-- <a href="#" target="_blank">github.com/yourprofile</a> -->
+                    <p style="color: var(--text-dim);">Available upon request</p>
+                </div>
+
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Location</h3>
+                    <p>Antananarivo, Madagascar</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Guillaume Rakotonjanahary Tsantaniaina. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">AI & Data Fullstack Engineer | Cloud Specialist</p>
+        </div>
+    </footer>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Project filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = 'block';
+                        setTimeout(() => card.style.opacity = '1', 10);
+                    } else {
+                        const categories = card.getAttribute('data-category').split(' ');
+                        if (categories.includes(filter)) {
+                            card.style.display = 'block';
+                            setTimeout(() => card.style.opacity = '1', 10);
+                        } else {
+                            card.style.opacity = '0';
+                            setTimeout(() => card.style.display = 'none', 300);
+                        }
+                    }
+                });
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Modal functionality
+        const modal = document.getElementById('projectModal');
+        const span = document.getElementsByClassName('close')[0];
+
+        span.onclick = function() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(15, 23, 42, 0.98)';
+            } else {
+                nav.style.background = 'rgba(15, 23, 42, 0.95)';
+            }
+        });
+
+        // Add particle effect (simple version)
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.width = '2px';
+            particle.style.height = '2px';
+            particle.style.background = 'rgba(37, 99, 235, 0.5)';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = Math.random() * window.innerHeight + 'px';
+            particle.style.animation = `float ${5 + Math.random() * 10}s linear infinite`;
+            document.getElementById('particles-js').appendChild(particle);
+
+            setTimeout(() => particle.remove(), 15000);
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 500);
+
+        // Add float animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+                10% { opacity: 1; }
+                90% { opacity: 1; }
+                100% { transform: translateY(-100vh) translateX(${Math.random() * 100 - 50}px); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
